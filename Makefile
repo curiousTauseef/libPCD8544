@@ -3,7 +3,6 @@ PREFIX = /usr/local
 WORKDIR = `pwd`
 
 CC = gcc
-CXX = g++
 AR = ar
 LD = g++
 
@@ -11,7 +10,7 @@ INC =
 CFLAGS = 
 RESINC = 
 LIBDIR = 
-LIB = 
+LIB = -lwiringPi
 LDFLAGS = 
 
 INC_DEBUG = $(INC)
@@ -58,7 +57,7 @@ out_debug: before_debug $(OBJ_DEBUG) $(DEP_DEBUG)
 	$(AR) rcs $(OUT_DEBUG) $(OBJ_DEBUG)
 
 $(OBJDIR_DEBUG)/src/PCD8544.o: src/PCD8544.c
-	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/PCD8544.c -o $(OBJDIR_DEBUG)/src/PCD8544.o
+	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c src/PCD8544.c $(LIB_DEBUG) -o $(OBJDIR_DEBUG)/src/PCD8544.o
 
 clean_debug: 
 	rm -f $(OBJ_DEBUG) $(OUT_DEBUG)
@@ -77,7 +76,7 @@ out_release: before_release $(OBJ_RELEASE) $(DEP_RELEASE)
 	$(AR) rcs $(OUT_RELEASE) $(OBJ_RELEASE)
 
 $(OBJDIR_RELEASE)/src/PCD8544.o: src/PCD8544.c
-	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/PCD8544.c -o $(OBJDIR_RELEASE)/src/PCD8544.o
+	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c src/PCD8544.c $(LIB_DEBUG) -o $(OBJDIR_RELEASE)/src/PCD8544.o
 
 clean_release: 
 	rm -f $(OBJ_RELEASE) $(OUT_RELEASE)
