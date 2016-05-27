@@ -11,10 +11,12 @@ Prerequisites
 Compilation
 ---
 To compile and install:  
+
     $make  
     $sudo make install
 
 To uninstall:  
+
     $sudo make uninstall
 
 
