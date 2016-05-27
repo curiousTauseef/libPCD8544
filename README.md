@@ -4,12 +4,12 @@ This driver uses either the hardware SPI or GPIO bit-banging (may not be as fast
 
 
 Prerequisites
---------
+---
 * wiringPI
 
 
 Compilation
---------
+---
 To compile and install:
    $make
    $sudo make install
@@ -19,11 +19,11 @@ To uninstall:
 
 
 License
--------
+---
+
 * Copyright (c) 2010 Limor Fried, Adafruit Industries
 * Copyright (c) 2012 Andre Wussow (Raspberry Pi version)
 * Copyright (c) 2016 Sk. Mohammadul Haque (modified version)
-
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
