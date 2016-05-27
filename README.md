@@ -5,7 +5,7 @@ This driver uses either the hardware SPI or GPIO bit-banging (may not be as fast
 
 Prerequisites
 ---
-* wiringPI
+* wiringPi
 
 
 Compilation
