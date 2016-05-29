@@ -392,7 +392,13 @@ void LCDInit(uint8_t SCLK, uint8_t DIN, uint8_t DC, uint8_t CS, uint8_t RST, uin
         _spi_enabled = spi_enabled;
         if(wiringPiSPISetup(0, 2000000)<0) printf("SPI Setup failed.\n");
     }
-    else idx = setupBitBang(_cs, _din, _sclk, 0);
+    else
+    {
+        pinMode(_sclk, OUTPUT);
+        pinMode(_din, OUTPUT);
+        pinMode(_cs, OUTPUT);
+        idx = setupBitBang(_cs, _din, _sclk, 0);
+    }
     delay(1);
     digitalWrite(_rst, LOW);
     delay(500);
