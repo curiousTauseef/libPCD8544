@@ -20,6 +20,11 @@ To uninstall:
     $sudo make uninstall
 
 
+Documentation
+---
+Visit [https://mohammadul.github.io/libPCD8544/doc](https://mohammadul.github.io/libPCD8544/doc) for documentation.
+
+
 License
 ---
 * Copyright (c) 2010 Limor Fried, Adafruit Industries
