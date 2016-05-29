@@ -101,7 +101,6 @@ void LCDzero();
 void LCDdisplay();
 void LCDupdate();
 void LCDclear();
-void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, uint8_t val);
 void delay(uint32_t msecs);
 #ifdef __cplusplus
 }

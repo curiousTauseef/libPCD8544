@@ -22,12 +22,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
+#include <inttypes.h>
 #include <wiringPi.h>
 #include <wiringPiSPI.h>
+#include <bitBang.h>
 #include <string.h>
 #include <unistd.h>
 #include <stdio.h>
-#include <time.h>
 #include "../include/PCD8544.h"
 
 /** \cond HIDDEN_SYMBOLS */
@@ -37,7 +38,6 @@
 
 static uint8_t cursor_x, cursor_y, textsize, textcolor;
 static int8_t _din, _sclk, _dc, _rst, _cs, _spi_enabled;
-struct timespec request;
 
 /** \endcond */
 
@@ -358,6 +358,8 @@ static void updateBoundingBox(uint8_t xmin, uint8_t ymin, uint8_t xmax, uint8_t 
     if(ymax>yUpdateMax) yUpdateMax = ymax;
 }
 
+static int idx;
+
 /** \endcond */
 
 /** \brief Initializes the LCD Module
@@ -374,7 +376,6 @@ static void updateBoundingBox(uint8_t xmin, uint8_t ymin, uint8_t xmax, uint8_t 
 
 void LCDInit(uint8_t SCLK, uint8_t DIN, uint8_t DC, uint8_t CS, uint8_t RST, uint8_t contrast, uint8_t spi_enabled)
 {
-    request.tv_nsec = 500;
     _din = DIN;
     _sclk = SCLK;
     _dc = DC;
@@ -391,13 +392,7 @@ void LCDInit(uint8_t SCLK, uint8_t DIN, uint8_t DC, uint8_t CS, uint8_t RST, uin
         _spi_enabled = spi_enabled;
         if(wiringPiSPISetup(0, 2000000)<0) printf("SPI Setup failed.\n");
     }
-    else
-    {
-        pinMode(_din, OUTPUT);
-        pinMode(_sclk, OUTPUT);
-        pinMode(_cs, OUTPUT);
-        if(_cs>0) digitalWrite(_cs, LOW);
-    }
+    else idx = setupBitBang(_cs, _din, _sclk, 0);
     delay(1);
     digitalWrite(_rst, LOW);
     delay(500);
@@ -877,8 +872,8 @@ void LCDfillcircle(uint8_t x0, uint8_t y0, uint8_t r, uint8_t color)
 
 void LCDspiwrite(uint8_t c)
 {
-    if(_spi_enabled) wiringPiSPIDataRW (0, &c, 1);
-    else shiftOut(_din, _sclk, MSBFIRST, c);
+    if(_spi_enabled) wiringPiSPIDataRW(0, &c, 1);
+    else digitalWriteSerial(idx, c);
 }
 
 /** \brief Writes out an array
@@ -891,7 +886,7 @@ void LCDspiwrite(uint8_t c)
 void LCDspiwriteArray(uint8_t *c, uint16_t n)
 {
     if(_spi_enabled) wiringPiSPIDataRW (0, c, n);
-    else while(n-->0) shiftOut(_din, _sclk, MSBFIRST, *c++);
+    else digitalWriteSerialArray(idx, c, n);
 }
 
 /** \brief Writes out a command byte
@@ -1009,30 +1004,6 @@ void LCDclear(void)
     LCDdataArray(pcd8544_buffer, LCDWIDTH*LCDHEIGHT/8);
     LCDsetPosition(0, 0);
     updateBoundingBox(0, 0, (LCDWIDTH-1), (LCDHEIGHT-1));
-}
-
-/** \brief Writes out a byte using bit-bang
- *
- * \param[in] dataPin uint8_t Data in pin
- * \param[in] clockPin uint8_t Clock pin
- * \param[in] bitOrder uint8_t Bit order (LSBFIRST/MSBFIRST)
- * \param[in] val uint8_t Byte to be sent
- *
- */
-
-void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, uint8_t val)
-{
-    uint8_t i;
-    //uint16_t j;
-    for(i=0; i<8; ++i)
-    {
-        if(bitOrder==LSBFIRST) digitalWrite(dataPin, !!(val&(1<<i)));
-        else digitalWrite(dataPin, !!(val&(1<<(7-i))));
-        digitalWrite(clockPin, HIGH);
-        //for(j=CLKCONST; j>0; --j);
-        nanosleep(&request, NULL);
-        digitalWrite(clockPin, LOW);
-    }
 }
 
 /** \brief Delays for milliseconds
