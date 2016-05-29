@@ -72,7 +72,6 @@
         <LI><OBJECT type="text/sitemap"><param name="Name" value="LCDupdate"><param name="Local" value="_p_c_d8544_8h.html#acd183b988466fea657df152d82075f8c"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="LCDwrite"><param name="Local" value="_p_c_d8544_8h.html#a0feeabbe695664a06244531cfa5d325c"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="LCDzero"><param name="Local" value="_p_c_d8544_8h.html#a717f4e715edaf52a6733f213350bef4a"><param name="ImageNumber" value="11"></OBJECT>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="shiftOut"><param name="Local" value="_p_c_d8544_8h.html#ac44afc7b9d1ec5feb1179b2e3454690a"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="pcd8544_buffer"><param name="Local" value="_p_c_d8544_8h.html#a289134c303d75918072e684e0e6d32f5"><param name="ImageNumber" value="11"></OBJECT>
         </UL>
       </UL>
@@ -112,7 +111,6 @@
         <LI><OBJECT type="text/sitemap"><param name="Name" value="LCDupdate"><param name="Local" value="_p_c_d8544_8c.html#a651dbd3968ac9dbe78c40a81f9286a44"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="LCDwrite"><param name="Local" value="_p_c_d8544_8c.html#a0feeabbe695664a06244531cfa5d325c"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="LCDzero"><param name="Local" value="_p_c_d8544_8c.html#add8b2e967baf748d8dd60d7c81ddbc3c"><param name="ImageNumber" value="11"></OBJECT>
-        <LI><OBJECT type="text/sitemap"><param name="Name" value="shiftOut"><param name="Local" value="_p_c_d8544_8c.html#ac44afc7b9d1ec5feb1179b2e3454690a"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="pcd8544_buffer"><param name="Local" value="_p_c_d8544_8c.html#a289134c303d75918072e684e0e6d32f5"><param name="ImageNumber" value="11"></OBJECT>
         <LI><OBJECT type="text/sitemap"><param name="Name" value="pi_logo"><param name="Local" value="_p_c_d8544_8c.html#a3fb16efd751b393498119f03e4ab7880"><param name="ImageNumber" value="11"></OBJECT>
         </UL>

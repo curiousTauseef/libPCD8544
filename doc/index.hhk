@@ -213,7 +213,6 @@
     <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_c_d8544_8c.html#add8b2e967baf748d8dd60d7c81ddbc3c"><param name="Name" value="LCDzero"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_c_d8544_8c.html#a289134c303d75918072e684e0e6d32f5"><param name="Name" value="pcd8544_buffer"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_c_d8544_8c.html#a3fb16efd751b393498119f03e4ab7880"><param name="Name" value="pi_logo"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_c_d8544_8c.html#ac44afc7b9d1ec5feb1179b2e3454690a"><param name="Name" value="shiftOut"></OBJECT>
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_c_d8544_8h.html"><param name="Name" value="PCD8544.h"></OBJECT>
   <UL>
@@ -277,7 +276,6 @@
     <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_c_d8544_8h.html#aa6b3f31170b18f602a66b9a95b530078"><param name="Name" value="PCD8544_SETVOP"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_c_d8544_8h.html#a5c673c82f36ffec51a07fecd110a0d3c"><param name="Name" value="PCD8544_SETXADDR"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_c_d8544_8h.html#aeb2416459f0db43bfc03b6662536694a"><param name="Name" value="PCD8544_SETYADDR"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_c_d8544_8h.html#ac44afc7b9d1ec5feb1179b2e3454690a"><param name="Name" value="shiftOut"></OBJECT>
     <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_c_d8544_8h.html#a87b537f5fa5c109d3c05c13d6b18f382"><param name="Name" value="WHITE"></OBJECT>
   </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_c_d8544_8c.html#a289134c303d75918072e684e0e6d32f5"><param name="Name" value="pcd8544_buffer"></OBJECT>
@@ -300,11 +298,6 @@
   <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_c_d8544_8h.html#a5c673c82f36ffec51a07fecd110a0d3c"><param name="Name" value="PCD8544_SETXADDR"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_c_d8544_8h.html#aeb2416459f0db43bfc03b6662536694a"><param name="Name" value="PCD8544_SETYADDR"></OBJECT>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_c_d8544_8c.html#a3fb16efd751b393498119f03e4ab7880"><param name="Name" value="pi_logo"></OBJECT>
-  <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_c_d8544_8c.html#ac44afc7b9d1ec5feb1179b2e3454690a"><param name="Name" value="shiftOut"></OBJECT>
-  <UL>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_c_d8544_8c.html#ac44afc7b9d1ec5feb1179b2e3454690a"><param name="Name" value="PCD8544.c"></OBJECT>
-    <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_c_d8544_8h.html#ac44afc7b9d1ec5feb1179b2e3454690a"><param name="Name" value="PCD8544.h"></OBJECT>
-  </UL>
   <LI><OBJECT type="text/sitemap"><param name="Local" value="_p_c_d8544_8h.html#a87b537f5fa5c109d3c05c13d6b18f382"><param name="Name" value="WHITE"></OBJECT>
 </UL>
 </BODY>
