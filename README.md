@@ -27,9 +27,9 @@ Visit [https://mohammadul.github.io/libPCD8544/doc](https://mohammadul.github.io
 
 License
 ---
-* Copyright (c) 2010 Limor Fried, Adafruit Industries
-* Copyright (c) 2012 Andre Wussow (Raspberry Pi version)
-* Copyright (c) 2016 Sk. Mohammadul Haque (modified version)
+* Copyright (c) 2016 Sk. Mohammadul Haque (this version)
+* Copyright (c) 2012 Andre Wussow (Raspberry Pi original version)
+* Copyright (c) 2010 Limor Fried, Adafruit Industries (original version)
 
 > This program is free software: you can redistribute it and/or modify
 > it under the terms of the GNU General Public License as published by
