@@ -300,8 +300,8 @@ static unsigned char font[] =
     0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-
 uint8_t pcd8544_buffer[LCDWIDTH*LCDHEIGHT/8] = {0,}; /**< PCD8544 drawing buffer */
+uint8_t pcd8544_buffer2[LCDWIDTH*LCDHEIGHT/8] = {0,}; /**< PCD8544 second drawing buffer for SPI */
 
 const uint8_t pi_logo [] =
 {
@@ -344,8 +344,8 @@ const uint8_t pi_logo [] =
 static void __setpixel(uint8_t x, uint8_t y, uint8_t color)
 {
     if((x>=LCDWIDTH)||(y>=LCDHEIGHT)) return;
-    if(color) pcd8544_buffer[x+(y/8)*LCDWIDTH] |= _BV(y%8);
-    else pcd8544_buffer[x+(y/8)*LCDWIDTH] &= ~_BV(y%8);
+    if(color) pcd8544_buffer[x+(y>>3)*LCDWIDTH] |= _BV(y%8);
+    else pcd8544_buffer[x+(y>>3)*LCDWIDTH] &= ~_BV(y%8);
 }
 
 static uint8_t xUpdateMin = (LCDWIDTH-1), xUpdateMax = 0, yUpdateMin = (LCDHEIGHT-1), yUpdateMax = 0;
@@ -551,7 +551,7 @@ void LCDdrawchar(uint8_t x, uint8_t y, char c)
     {
         __setpixel(x+5, y+j, !textcolor);
     }
-    updateBoundingBox(x, y, x+5, y + 8);
+    updateBoundingBox(x, y, x+5, y+8);
 }
 
 /** \brief  Prints a character at current position
@@ -565,6 +565,7 @@ void LCDwrite(uint8_t c)
     if(c=='\n')
     {
         cursor_y += textsize*8;
+        if(cursor_y>=LCDHEIGHT) cursor_y = 0;
         cursor_x = 0;
     }
     else if(c!='\r')
@@ -574,7 +575,7 @@ void LCDwrite(uint8_t c)
         if(cursor_x>=(LCDWIDTH-5))
         {
             cursor_x = 0;
-            cursor_y += 8;
+            cursor_y += textsize*8;
         }
         if(cursor_y>=LCDHEIGHT) cursor_y = 0;
     }
@@ -628,8 +629,8 @@ void LCDsetCursor(uint8_t x, uint8_t y)
 void LCDsetPosition(uint8_t x, uint8_t y)
 {
     static uint8_t _xy[2];
-    _xy[0] = x+0x80;
-    _xy[1] = y+0x40;
+    _xy[0] = x+PCD8544_SETXADDR;
+    _xy[1] = y+PCD8544_SETYADDR;
     LCDcommandArray(_xy, 2);
 }
 
@@ -885,13 +886,18 @@ void LCDspiwrite(uint8_t c)
 /** \brief Writes out an array
  *
  * \param[in] c uint8_t* Array
- * \param[in] n uint16_t Size of array
+ * \param[in] n uint16_t Size of array (max - LCDWIDTH*LCDHEIGHT/8)
  *
  */
 
 void LCDspiwriteArray(uint8_t *c, uint16_t n)
 {
-    if(_spi_enabled) wiringPiSPIDataRW (0, c, n);
+    if(_spi_enabled)
+    {
+        if(n>(LCDWIDTH*LCDHEIGHT/8)) n = (LCDWIDTH*LCDHEIGHT/8);
+        memcpy(pcd8544_buffer2, c, n);
+        wiringPiSPIDataRW(0, pcd8544_buffer2, n);
+    }
     else digitalWriteSerialArray(idx, c, n);
 }
 
@@ -982,14 +988,15 @@ void LCDdisplay(void)
 
 void LCDupdate(void)
 {
-    uint8_t p;
+    uint8_t p, pp;
     for(p=0; p<48; p+=8)
     {
         if(yUpdateMin>=(p+8)) continue;
         if(yUpdateMax<p) break;
-        LCDcommand(PCD8544_SETYADDR|(p>>3));
+        pp = p>>3;
+        LCDcommand(PCD8544_SETYADDR|(pp));
         LCDcommand(PCD8544_SETXADDR|xUpdateMin);
-        LCDdataArray(pcd8544_buffer+(LCDWIDTH*p)+xUpdateMin, (xUpdateMax-xUpdateMin));
+        LCDdataArray(pcd8544_buffer+(LCDWIDTH*pp)+xUpdateMin, (xUpdateMax-xUpdateMin));
     }
     LCDcommand(PCD8544_SETYADDR);
     xUpdateMin = (LCDWIDTH-1);
@@ -1009,7 +1016,10 @@ void LCDclear(void)
     LCDsetPosition(0, 0);
     LCDdataArray(pcd8544_buffer, LCDWIDTH*LCDHEIGHT/8);
     LCDsetPosition(0, 0);
-    updateBoundingBox(0, 0, (LCDWIDTH-1), (LCDHEIGHT-1));
+    xUpdateMin = (LCDWIDTH-1);
+    xUpdateMax = 0;
+    yUpdateMin = (LCDHEIGHT-1);
+    yUpdateMax = 0;
 }
 
 /** \brief Delays for milliseconds
