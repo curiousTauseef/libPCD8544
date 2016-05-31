@@ -4,9 +4,9 @@
  * @author Sk. Mohammadul Haque, Andre Wussow, Limor Fried (originally)
  * @version 1.0.0.0
  * @copyright
- * Copyright (c) 2010 Limor Fried, Adafruit Industries
+ * Copyright (c) 2016 Sk. Mohammadul Haque (this version)
  * Copyright (c) 2012 Andre Wussow (Raspberry Pi version)
- * Copyright (c) 2016 Sk. Mohammadul Haque (modified version)
+ * Copyright (c) 2010 Limor Fried, Adafruit Industries
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

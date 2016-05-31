@@ -1,5 +1,5 @@
 # libPCD8544
-A simple driver and API for PCD8544 LCD (Nokia3310/5110) to be used with a Raspberry Pi.
+A fast driver and API for PCD8544 LCD (Nokia3310/5110) to be used with a Raspberry Pi.
 This driver uses either the hardware SPI (very fast) or GPIO bit-banging (fast, but may not be stable always).
 
 
